@@ -8,14 +8,33 @@ class Persoon{
         if(id < 0){
             throw new Error("id less than 0");
         }
+        if(!Number.isInteger((id))) {
+            throw new Error("id is not a number");
+        }
+        this._id = id;
+        this._naam = naam;
+
+    }
+
+
+    get id() {
+        return this._id;
+    }
+
+    get naam() {
+        return this._naam;
+    }
+
+    toString(){
+        return `[${this._id}] ${this._naam}`;
     }
 }
 class Manager extends Persoon{
-    constructor(id, naam, ...loonwerkers){
+    constructor(id, naam){
         super(id, naam);
         this._id = id;
         this._naam = naam;
-        this._loonwerkers = loonwerkers;
+        this._loonwerkers = [];
 
     }
     get id() {
@@ -30,7 +49,12 @@ class Manager extends Persoon{
         return this._loonwerkers;
     }
 
-    voegLoonWerkerToe(loonwerker = new Loonwerker(id, naam, loon, werkUren)){
+    berekenLoon()
+    {
+        return this._loonPerUur * this._aantalUrenGewerkt;
+    }
+
+    voegLoonWerkerToe(loonwerker){
         if(loonwerker instanceof Loonwerker){
             this._loonwerkers.push(loonwerker);
         }
@@ -40,12 +64,16 @@ class Manager extends Persoon{
 }
 
     toString(){
-        return `[${this._id}] ${this._naam} = ${berekenLoon(this._loonPerUur, this._aantalUrenGewerkt)}`;
+        return `[${this._id}] ${this._naam} = ${this.berekenLoon()}`;
     }
 }
 class Loonwerker extends Persoon{
     constructor(id, naam, loonPerUur, aantalUrenGewerkt){
         super(id, naam);
+        this._id = id;
+        this._naam = naam;
+        this._loonPerUur = loonPerUur;
+        this._aantalUrenGewerkt = aantalUrenGewerkt;
         if(loonPerUur < 0)
         {
             throw new Error("loonPerUur less than 0");
@@ -54,10 +82,9 @@ class Loonwerker extends Persoon{
         {
             throw new Error("aantalUrenGewerkt less than 0");
         }
-        this._id = id;
-        this._naam = naam;
-        this._loonPerUur = loonPerUur;
-        this._aantalUrenGewerkt = aantalUrenGewerkt;
+        if(!Number.isInteger(loonPerUur) && !Number.isInteger(aantalUrenGewerkt)){
+            throw new Error("loonPerUur or aantalUren is not an integer!");
+        }
     }
 
     get id() {
@@ -75,16 +102,16 @@ class Loonwerker extends Persoon{
     get aantalUrenGewerkt() {
         return this._aantalUrenGewerkt;
     }
+    berekenLoon()
+    {
+        return this._loonPerUur * this._aantalUrenGewerkt;
+    }
 
     toString(){
-        return `[${this._id}] ${this._naam} = ${berekenLoon(this._loonPerUur, this._aantalUrenGewerkt)}`;
+        return `[${this._id}] ${this._naam} = ${this.berekenLoon()}`;
     }
 }
 
-function berekenLoon(loonPerUur, aantalUrenGewerkt)
-{
-    return loonPerUur * aantalUrenGewerkt;
-}
 
 let persoon = new Persoon(1,"mieke");
 let manager=new Manager(2,"jan");
