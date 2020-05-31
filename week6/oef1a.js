@@ -15,7 +15,7 @@ function loaded() {
 
 
 function handleGetAllPersons() {
-    let url = 'http://localhost:3001/persons/';
+    let url = 'http://localhost:3000/persons/';
     let output = document.getElementById("div_output");
     makeElementEmpty(output);
     fetch(url)
@@ -41,7 +41,7 @@ function handleGetAllPersons() {
 
 
 function handleGetPerson() {
-    let url = 'http://localhost:3001/persons/';
+    let url = 'http://localhost:3000/persons/';
     let id = document.getElementById("txt_id").value;
     let output = document.getElementById("div_output");
     makeElementEmpty(output);
@@ -68,7 +68,7 @@ function handleGetPerson() {
 
 //oef1a
 function handleGetPersonByName() {
-    let url = 'http://localhost:3001/persons/';
+    let url = 'http://localhost:3000/persons/';
     let name = document.getElementById("txt_get_by_name").value;
     let output = document.getElementById("div_output");
     makeElementEmpty(output);
@@ -97,7 +97,7 @@ function handleGetPersonByName() {
 
 //oef1b
 function handlePutPerson() {
-    let url = 'http://localhost:3001/persons/';
+    let url = 'http://localhost:3000/persons/';
     let output = document.getElementById("div_output");
     let id = document.getElementById("put_person_id").value;
     let name = document.getElementById("put_person_name").value;
@@ -131,7 +131,7 @@ function handlePutPerson() {
 }
 
 function handlePostPerson() {
-    let url = 'http://localhost:3001/persons/';
+    let url = 'http://localhost:3000/persons/';
     let output = document.getElementById("div_output");
     let name = document.getElementById("txt_name").value;
     let person = {name: name};

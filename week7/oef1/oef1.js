@@ -51,7 +51,12 @@ class Manager extends Persoon{
 
     berekenLoon()
     {
-        return this._loonPerUur * this._aantalUrenGewerkt;
+        let sum = 0;
+        for (let loonwerker of this._loonwerkers)
+        {
+            sum += loonwerker.berekenLoon();
+        }
+        return Math.round(sum * 0.2);
     }
 
     voegLoonWerkerToe(loonwerker){

@@ -1,15 +1,14 @@
 {
   "persons": [
     {
-      "name": "kurt",
-      "id": 1
+      "id": 1,
+      "name": "sofie",
+      "friends": [2,3]
     },
     {
       "id": 2,
       "name": "tim",
-      "friends": [
-        1
-      ]
+      "friends": [1]
     },
     {
       "id": 3,
